@@ -189,6 +189,19 @@ main a:hover {
   color: var(--primary-dark);
 }
 
+
+
+main .projects li {
+  transition: all 0.5s ease;
+}
+main .projects li:hover {
+  transform: scale(1.05);
+  transform: translateY(-6px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, .04);
+  color: var(--primary-dark);
+}
+
+
 /* ---------- Footer ---------- */
 
 footer {
