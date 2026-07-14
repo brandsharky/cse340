@@ -19,6 +19,8 @@ select * from organization;
 
 
 
+
+
 -- Create service_project table
 create table service_project(
 	project_id serial primary key,
@@ -62,16 +64,76 @@ select * from service_project;
 
 
 
+-- Create category table
+create table category (
+  category_id serial primary key,
+  name varchar(100) not null
+);
+
+-- Create category content
+insert into category (name)
+values
+	('Construction'),
+	('Agriculture'),
+	('Community Service'),
+	('Healthcare'),
+	('Environmental'),
+	('Education'),
+	('Animal Care')
+;
+
+-- Check if data was inserted
+select * from category;
 
 
 
 
 
+-- Create service_project_category table
+create table service_project_category (
+  project_id int not null,
+  category_id int not null,
 
+  primary key (project_id, category_id),
 
+  foreign key (project_id)
+  	references service_project(project_id),
 
+  foreign key (category_id)
+    references category(category_id)
+);
 
+-- Create service_project_category content
+insert into service_project_category (project_id, category_id)
+values
+	(1, 1),
+	(1, 2),
+	(2, 1),
+	(2, 3),
+	(3, 1),
+	(3, 3),
+	(4, 1),
+	(4, 5),
+	(5, 1),
+	(5, 6),
+	(6, 2),
+	(7, 2),
+	(7, 5),
+	(8, 2),
+	(8, 5),
+	(9, 2),
+	(10, 2),
+	(11, 4),
+	(11, 3),
+	(12, 3),
+	(12, 2),
+	(13, 3),
+	(14, 3),
+	(15, 4),
+	(15, 3)
+;
 
-
+-- Check if data was inserted
+select * from service_project_category;
 
 
