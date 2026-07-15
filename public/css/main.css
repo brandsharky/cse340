@@ -205,23 +205,32 @@ main .projects li:hover {
 /* ---------- Footer ---------- */
 
 footer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
 
-  background: var(--secondary);
-
-  color: white;
+  padding: 2rem 3rem;
 
   text-align: center;
 
-  padding: 3rem;
-
-  margin-top: auto;
+  background: var(--secondary);
+  color: white;
 }
 
 footer p {
-
   color: #cbd5e1;
 
   margin: 0;
+}
+footer a {
+  text-decoration: none;
+
+  color: var(--primary);
+
+  transition: color 0.5s ease;
+}
+footer a:hover {
+  color: var(--accent);
 }
 
 

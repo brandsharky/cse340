@@ -1,3 +1,13 @@
   <footer>
-    <p>&copy; <%= new Date().getFullYear() %> CSE 340 Service Network.</p>
+    <p>&copy; <%= new Date().getFullYear() %> CSE 340 Service Network.
+
+    <% if (NODE_ENV === 'development') { %>
+      (Development mode)
+    <% } %>
+
+    </p>
+
+    <a href="https://byui-cse.github.io/cse340-ww-course-v2/index.html">Course Content</a>
+
+    <a href="https://github.com/brandsharky/cse340" target="_blank" rel="noopener noreferrer">Github Repo</a>
   </footer>
