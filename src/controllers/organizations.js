@@ -111,7 +111,7 @@ const processEditOrganizationForm = async(req, res) => {
   req.flash('success', 'Organization update successfull!');
 
   res.redirect(`/organization/${organizationId}`);
-}
+};
 
 
 
