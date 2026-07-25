@@ -50,7 +50,7 @@ const getProjectsByCategoryId = async(categoryId) => {
       JOIN service_project_category spc
         ON sp.project_id = spc.project_id
     WHERE spc.category_id = $1
-    ORDER BY sp.project_date
+    ORDER BY sp.project_date;
   `;
   const queryParams = [categoryId];
   const result = await db.query(query, queryParams);
@@ -59,5 +59,28 @@ const getProjectsByCategoryId = async(categoryId) => {
 };
 
 
+const assignCategoryToProject = async(projectId, categoryId) => {
+  const query = `
+    INSERT INTO SERVICE_PROJECT_CATEGORY (project_id, category_id)
+    VALUES
+      ($1, $2);
+  `;
+  await db.query(query, [projectId, categoryId]);
+};
 
-export { getAllCategories, getCategoryDetails, getCategoriesByProjectId, getProjectsByCategoryId };
+
+const updateCategoryAssignments = async(projectId, categoryIds) => {
+  const deleteQuery = `
+    DELETE FROM service_project_category
+    WHERE project_id = $1;
+  `;
+  await db.query(deleteQuery, [projectId]);
+
+  for (const categoryId of categoryIds) {
+    await assignCategoryToProject(projectId, categoryId);
+  }
+};
+
+
+
+export { getAllCategories, getCategoryDetails, getCategoriesByProjectId, getProjectsByCategoryId, updateCategoryAssignments };
