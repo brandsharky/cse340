@@ -1,7 +1,7 @@
 import { body, validationResult } from 'express-validator';
 
 // Import any needed model functions
-import { getAllServiceProjects, getProjectsByOrganizationId, getUpcomingProjects, getProjectDetails, createProject } from "../models/projects.js";
+import { getAllServiceProjects, getProjectsByOrganizationId, getUpcomingProjects, getProjectDetails, createProject, updateProject } from "../models/projects.js";
 import { getCategoriesByProjectId } from "../models/categories.js";
 import { getAllOrganizations } from '../models/organizations.js';
 const NUMBER_OF_UPCOMING_PROJECTS = 5;
@@ -70,7 +70,7 @@ const showNewProjectForm = async(req, res) => {
 };
 
 
-const processNewProjectForm = async (req, res) => {
+const processNewProjectForm = async(req, res) => {
   // Check for validation errors
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -97,9 +97,47 @@ const processNewProjectForm = async (req, res) => {
     req.flash("error", "There was an error creating the service project.");
     res.redirect("/new-project");
   }
-};;
+};
+
+
+const showEditProjectForm = async(req, res) => {
+  const projectId = req.params.id;
+  const projectDetails = await getProjectDetails(projectId);
+  const organizations = await getAllOrganizations();
+  const title = "Edit Project";
+
+  console.log(projectDetails.project_date)
+  console.log(typeof projectDetails.project_date);
+
+  res.render('edit-project', { title, projectDetails, organizations });
+};
+
+
+const processEditProjectForm = async(req, res) => {
+  // Check for validation errors
+  const results = validationResult(req);
+  if (!results.isEmpty()) {
+    // Validation failed - loop through errors
+    results.array().forEach((error) => {
+      req.flash('error', error.msg);
+    });
+
+    // Redirect back to the new organization from
+    return res.redirect(`/edit-project/${req.params.id}`);
+  }
+
+  const projectId = req.params.id;
+  const { organizationId, title, description, location, project_date } = req.body;
+  await updateProject(projectId, organizationId, title, description, location, project_date);
+
+
+  // Set a success flash message
+  req.flash('success', 'Project updated successfully!');
+
+  res.redirect(`/project/${projectId}`);
+};
 
 
 
 // Export any controller functions
-export { showProjectsPage, showProjectDetailsPage, showNewProjectForm, processNewProjectForm, projectValidation };
+export { showProjectsPage, showProjectDetailsPage, showNewProjectForm, processNewProjectForm, projectValidation, showEditProjectForm, processEditProjectForm };
