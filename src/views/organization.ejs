@@ -1,21 +1,23 @@
 <%- include('partials/header') %>
 <main>
-  <h1><%= title %></h1>
+  <div class="titles">
+    <h1><%= title %></h1>
+    <h2><%= organizationDetails.name %></h2>
+  </div>
 
-  <h2><%= organizationDetails.name %></h2>
+  <div class="organization-details">
+    <img src="/images/<%= organizationDetails.logo_filename %>" alt="<%= organizationDetails.name %> logo" class="organization-logo">
+    <p><%= organizationDetails.description %></p>
+  </div>
 
-  <img src="/images/<%= organizationDetails.logo_filename %>" alt="<%= organizationDetails.name %> logo">
-
-  <p>
-    <%= organizationDetails.description %>
-  </p>
-
-  <h3>Service Projects</h3>
-  <ul>
-    <% projects.forEach(project => { %>
-      <li><a href="/project/<%= project.project_id %>"><%= project.title %></a></li>
-    <% }); %>
-  </ul>
+  <div class="organization-projects">
+    <h3>Service Projects</h3>
+    <ul class="projects-by-organization">
+      <% projects.forEach(project => { %>
+        <li><a href="/project/<%= project.project_id %>"><%= project.title %></a></li>
+      <% }); %>
+    </ul>
+  </div>
 
   <a href="/edit-organization/<%= organizationDetails.organization_id %>">Edit Organization</a>
 </main>
