@@ -1,34 +1,52 @@
 <%- include('partials/header') %>
 <main>
-  <h2><%= title %></h2>
+  <div class="titles">
+    <h1><%= title %></h1>
+  </div>
 
-  <p>
-    <% categories.forEach(category => { %>
-      <a href="/category/<%= category.category_id %>"><%= category.name %></a>,
-    <% }) %>
-  </p>
+  <div class="project-categories">
+    <h2>Project Categories</h2>
 
-  <p>
-    <strong>Description:</strong><br>
-    <%= projectDetails.description %>
-  </p>
+    <div class="categories-container">
+      <% categories.forEach(category => { %>
+        <a href="/category/<%= category.category_id %>"><%= category.name %></a>
+      <% }) %>
+    </div>
+  </div>
 
-  <p>
-    <strong>Date:</strong><br>
-    <%= new Date(projectDetails.project_date).toLocaleDateString('en-US', { year: 'numeric' , month: 'long' , day: 'numeric' }) %>
-  </p>
 
-  <p>
-    <strong>Location:</strong><br>
-    <%= projectDetails.location %>
-  </p>
+  <div class="project-details-organization">
+    <h2>Partner Organization</h2>
 
-  <p>
-    <strong>Partner Organization:</strong><br>
-    <a href="/organization/<%= projectDetails.organization_id %>">
-      <%= projectDetails.organization_name %>
-    </a>
-  </p>
+    <a href="/organization/<%= projectDetails.organization_id %>"><%= projectDetails.organization_name %></a>
+  </div>
+
+
+  <div class="project-details-description">
+    <h2>What?</h2>
+
+    <p>
+      <%= projectDetails.description %>
+    </p>
+  </div>
+
+
+  <div class="project-details-date">
+    <h2>When?</h2>
+
+    <p>
+      <%= new Date(projectDetails.project_date).toLocaleDateString('en-US', { year: 'numeric' , month: 'long' , day: 'numeric' }) %>
+    </p>
+  </div>
+
+
+  <div class="project-details-location">
+    <h2>Where?</h2>
+    <p>
+      <%= projectDetails.location %>
+    </p>
+  </div>
+
 
   <a href="/assign-categories/<%= projectDetails.project_id %>">Edit Categories</a>
 
