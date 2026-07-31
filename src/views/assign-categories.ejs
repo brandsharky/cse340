@@ -8,7 +8,7 @@
     <div class="checkbox-group">
       <% categories.forEach(category=> { %>
         <label class="checkbox-item">
-          <input type="checkbox" name="categories" value="<%= category.category_id %>">
+          <input type="checkbox" name="categoryIds" value="<%= category.category_id %>" <%= assignedCategories.some(ac => ac.category_id === category.category_id) ? "checked" : "" %>>
 
           <span><%= category.name %></span>
         </label>
