@@ -759,5 +759,17 @@ footer a:hover {
 
 
 
+/*#region Dashboard */
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  font-size: 1.25rem;
+}
+.dashboard span {
+  color: var(--primary-dark);
+}
+/*#endregion */
 
 

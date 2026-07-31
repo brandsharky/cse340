@@ -137,3 +137,42 @@ values
 select * from service_project_category;
 
 
+
+
+
+-- Create roles table
+create table roles (
+	role_id serial primary key,
+	role_name varchar(50) unique not null,
+	role_description text
+);
+
+-- Create roles content
+insert into roles (role_name, role_description)
+values
+	('user', 'Standard user with basic access'),
+	('admin', 'Administrator with full system access')
+;
+
+-- Check if data was insterted
+select * from roles;
+
+
+
+
+
+-- Create users table
+create table users (
+	user_id serial primary key,
+	name varchar(100) not null,
+	email varchar(100) unique not null,
+	password_hash varchar(255) not null,
+	role_id integer references roles(role_id),
+	created_at timestamp default current_timestamp
+);
+
+-- Create users content
+
+-- Check if data was inserted
+
+
