@@ -8,5 +8,9 @@
     <p>Name: <span><%= name %></span></p>
     <p>Username: <span><%= email %></span></p>
   </div>
+
+  <% if (user && user.role_name === 'admin') { %>
+    <a href="/users">Registered Users</a>
+  <% } %>
 </main>
 <%- include('partials/footer') %>

@@ -1,7 +1,7 @@
 import bcrypt from 'bcrypt';
 
 // Import any needed model functions
-import { createUser, authenticateUser } from '../models/users.js';
+import { createUser, authenticateUser, getAllUsers } from '../models/users.js';
 
 
 
@@ -117,6 +117,19 @@ const requireRole = (role) => {
 };
 
 
+const showUsersPage = async(req, res) => {
+  try {
+    const users = await getAllUsers();
+
+    res.render("users", { title: "Registered Users", users });
+  } catch (error) {
+    console.error(error);
+    req.flash("error", "Unable to load users.");
+    res.redirect("/dashboard");
+  }
+};
+
+
 
 // Export any controller functions
-export { showUserRegistrationForm, processUserRegistrationForm, showLoginForm, processLoginForm, processLogout, requireLogin, showDashboard, requireRole };
+export { showUserRegistrationForm, processUserRegistrationForm, showLoginForm, processLoginForm, processLogout, requireLogin, showDashboard, requireRole, showUsersPage };
