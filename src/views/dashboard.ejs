@@ -12,5 +12,40 @@
   <% if (user && user.role_name === 'admin') { %>
     <a href="/users">Registered Users</a>
   <% } %>
+
+  <section class="volunteer-projects">
+    <h2>My Volunteer Projects</h2>
+
+    <% if (volunteerProjects.length === 0) { %>
+      <p>You haven't signed up to volunteer for any projects yet.</p>
+    <% } else { %>
+
+      <ul class="volunteer-list">
+        <% volunteerProjects.forEach(project => { %>
+          <li>
+            <div class="volunteer-info">
+              <h3>
+                <a href="/project/<%= project.project_id %>">
+                  <%= project.title %>
+                </a>
+              </h3>
+
+              <p><strong>Organization:</strong> <%= project.organization_name %></p>
+              <p><strong>Location:</strong> <%= project.location %></p>
+              <p><strong>Date:</strong> <%= new Date(project.project_date).toLocaleDateString() %></p>
+            </div>
+
+            <div class="volunteer-actions">
+              <form action="/project/<%= project.project_id %>/unvolunteer" method="POST">
+                <input type="hidden" name="redirect" value="dashboard">
+                <button type="submit">Remove Me</button>
+              </form>
+            </div>
+          </li>
+        <% }) %>
+      </ul>
+
+    <% } %>
+  </section>
 </main>
 <%- include('partials/footer') %>

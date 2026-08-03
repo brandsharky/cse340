@@ -171,8 +171,32 @@ create table users (
 	created_at timestamp default current_timestamp
 );
 
--- Create users content
+-- Check if table was created
+select * from users;
 
--- Check if data was inserted
 
 
+
+
+-- Create user_service_project table
+create table user_service_project (
+	user_id int not null,
+	project_id int not null,
+
+	primary key (user_id, project_id),
+
+  constraint fk_user_service_project_user
+    foreign key (user_id)
+    references users(user_id)
+    on delete cascade,
+
+  constraint fk_user_service_project_project
+    foreign key (project_id)
+    references service_project(project_id)
+    on delete cascade
+);
+
+-- Create user_service_project content
+
+-- Check if table was created
+select * from user_service_project;

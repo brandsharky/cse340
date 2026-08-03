@@ -16,7 +16,9 @@ import {
   processNewProjectForm,
   projectValidation,
   showEditProjectForm,
-  processEditProjectForm
+  processEditProjectForm,
+  processVolunteerSignup,
+  processVolunteerRemoval
 } from './controllers/projects.js';
 import {
   showCategoriesPage,
@@ -103,6 +105,16 @@ router.post(
   projectValidation,
   processEditProjectForm
 ); // Route to handle the edit project form submission
+router.post(
+  '/project/:id/volunteer',
+  requireLogin,
+  processVolunteerSignup
+);
+router.post(
+  '/project/:id/unvolunteer',
+  requireLogin,
+  processVolunteerRemoval
+);
 
 router.get('/categories', showCategoriesPage); // Route for categories page
 router.get('/category/:id', showCategoryDetailsPage); // Route for category details page

@@ -801,6 +801,125 @@ footer a:hover {
 
 
 
+.volunteer-form {
+  width: 100%;
+  max-width: none;
+}
+
+
+
+
+/* Dashboard Volunteer Section */
+.volunteer-projects {
+  margin-top: 3rem;
+}
+
+.volunteer-projects h2 {
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.volunteer-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.volunteer-list li {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+}
+
+.volunteer-info {
+  flex: 1;
+}
+
+.volunteer-info h3 {
+  margin: 0 0 .75rem;
+}
+
+.volunteer-info h3 a {
+  color: #1e4fa8;
+  text-decoration: none;
+}
+
+.volunteer-info h3 a:hover {
+  text-decoration: underline;
+}
+
+.volunteer-info p {
+  margin: .35rem 0;
+  color: #555;
+}
+
+.volunteer-actions {
+  display: flex;
+  align-items: center;
+}
+
+.volunteer-actions form {
+  margin: 0;
+}
+
+.volunteer-actions button {
+  padding: .75rem 1.25rem;
+  border: none;
+  border-radius: 8px;
+  background: #d9534f;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background .2s ease;
+}
+
+.volunteer-actions button:hover {
+  background: #c9302c;
+}
+
+@media (max-width: 700px) {
+  .volunteer-list li {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .volunteer-actions {
+    width: 100%;
+  }
+
+  .volunteer-actions button {
+    width: 100%;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

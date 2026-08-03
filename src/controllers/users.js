@@ -2,6 +2,7 @@ import bcrypt from 'bcrypt';
 
 // Import any needed model functions
 import { createUser, authenticateUser, getAllUsers } from '../models/users.js';
+import { getVolunteerProjects } from '../models/projects.js';
 
 
 
@@ -92,8 +93,9 @@ const requireLogin = async(req, res, next) => {
 
 const showDashboard = async(req, res) => {
   const user = req.session.user;
+  const volunteerProjects = await getVolunteerProjects(user.user_id);
 
-  res.render('dashboard', { title: 'Dashboard', name: user.name, email: user.email });
+  res.render('dashboard', { title: 'Dashboard', name: user.name, email: user.email, volunteerProjects });
 };
 
 
